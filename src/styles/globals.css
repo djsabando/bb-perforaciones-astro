@@ -1,0 +1,20 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Foco accesible */
+:focus-visible { outline: 2px solid #25864b; outline-offset: 2px; }
+
+/* Utilidades propias */
+.section-header { @apply max-w-3xl mx-auto text-center sm:text-left; }
+
+.section { @apply py-12 sm:py-16; }
+.section-title { @apply text-2xl sm:text-3xl font-bold tracking-tight; }
+.section-sub { @apply mt-2 text-gray-600; }
+
+.btn-primary { @apply inline-flex items-center justify-center rounded-xl bg-brand px-6 py-3 font-semibold text-white hover:bg-brandDark transition; }
+.btn-ghost { @apply inline-flex items-center justify-center rounded-xl border border-white/30 bg-white/10 px-6 py-3 font-semibold text-white hover:bg-white/20; }
+.btn-outline { @apply inline-flex items-center justify-center rounded-xl border border-gray-300 px-6 py-3 font-semibold text-gray-900 hover:bg-gray-50; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 80px; } /* compensa el header sticky */

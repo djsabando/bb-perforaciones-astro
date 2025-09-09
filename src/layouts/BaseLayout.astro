@@ -1,0 +1,55 @@
+---
+import "../styles/globals.css";
+const {
+  title = "B&B Perforaciones de Pozos — Ecuador",
+  description = "Perforación de pozos de agua en Ecuador desde 1993. Estudios, perforación, mantenimiento y equipamiento. Cotizaciones rápidas.",
+} = Astro.props;
+---
+
+<html lang="es">
+  <head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/og-cover.jpg" />
+    <meta property="og:type" content="website" />
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <script type="application/ld+json">
+      {{
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "B&B Perforaciones",
+        "url": "https://www.bybperforaciones.com",
+        "sameAs": [
+          "https://www.instagram.com/b.bperforacionespozos?igsh=NXhhaGx0M2MydHcz",
+          "https://www.facebook.com/B.b.Perforaciones.PozosdeAgua?mibextid=ZbWKwL",
+          "https://wa.me/593981894763"
+        ]
+      }}
+    </script>
+
+    <title>{title}</title>
+    
+  </head>
+  <body class="antialiased text-gray-900">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 bg-white text-black px-3 py-2 rounded"
+      >Saltar al contenido</a
+    >
+    <slot />
+  </body>
+</html>
