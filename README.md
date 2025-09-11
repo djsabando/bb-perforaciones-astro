@@ -1,43 +1,89 @@
-# Astro Starter Kit: Minimal
+B&B Perforaciones — Landing (Astro + Tailwind)
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Landing page rápida y responsive para B&B Perforaciones, construida con Astro
+ y Tailwind CSS.
+Optimizada para SEO básico, buenas métricas Core Web Vitals y mantenimiento sencillo por un único responsable.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-## 🚀 Project Structure
 
-Inside of your Astro project, you'll see the following folders and files:
+🧱 Stack
 
-```text
-/
+Astro (Island architecture, sin JS innecesario)
+
+Tailwind CSS (utilidades de diseño y theme)
+
+Iconos SVG puros (sin dependencias)
+
+Imágenes estáticas (sirve todo desde public/)
+
+
+
+▶️ Desarrollo local
+
+Requisitos: Node 18+ y npm
+
+# instalar deps
+npm i
+
+# entorno de desarrollo
+npm run dev
+
+# build de producción
+npm run build
+
+# previsualizar el build
+npm run preview
+
+
+
+🗂️ Estructura del proyecto
+.
 ├── public/
+│   ├── img/
+│   │   ├── galeria/            # imágenes de la galería
+│   │   └── clientes/           # logos de clientes (PNG/SVG)
+│   ├── favicon.svg             # ícono principal
+│   └── og-cover.jpg            # imagen OG para redes
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+│   ├── components/
+│   │   ├── Header.astro
+│   │   ├── Hero.astro
+│   │   ├── Servicios.astro
+│   │   ├── Clientes.astro
+│   │   ├── Galeria.astro
+│   │   └── WhatsAppFloat.astro
+│   ├── layouts/
+│   │   └── Layout.astro
+│   ├── pages/
+│   │   └── index.astro
+│   └── styles/
+│       └── globals.css
+├── astro.config.mjs
+├── tailwind.config.mjs
+├── package.json
+└── README.md
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+🚀 Deploy
 
-Any static assets, like images, can be placed in the `public/` directory.
+Funciona out-of-the-box en Vercel, Netlify o cualquier hosting estático.
 
-## 🧞 Commands
+Build: npm run build
 
-All commands are run from the root of the project, from a terminal:
+Output: carpeta dist/
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+Adaptador: estático por defecto (no se necesita servidor Node).
 
-## 👀 Want to learn more?
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+🧩 Contribuir / mantenimiento
+
+Crea rama: feat/xxx o fix/xxx.
+
+npm run dev y prueba en desktop + móvil.
+
+Asegúrate de no romper el encuadre del Hero ni el comportamiento de los CTAs.
+
+Sube imágenes optimizadas (WebP/JPG progresivo, PNG transparente si necesitas fondo).
+
+
