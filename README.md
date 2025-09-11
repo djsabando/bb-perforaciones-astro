@@ -1,89 +1,107 @@
-B&B Perforaciones — Landing (Astro + Tailwind)
+# B&B Perforaciones — Landing (Astro + Tailwind)
 
-Landing page rápida y responsive para B&B Perforaciones, construida con Astro
- y Tailwind CSS.
-Optimizada para SEO básico, buenas métricas Core Web Vitals y mantenimiento sencillo por un único responsable.
+Landing page rápida y responsive para **B&B Perforaciones**, construida con [Astro](https://astro.build) y [Tailwind CSS](https://tailwindcss.com).  
+Optimizada para SEO básico, buen performance (Core Web Vitals) y mantenimiento sencillo.
 
+![preview](./public/og-cover.jpg)
 
+<p align="left">
+  <a href="https://astro.build">Astro</a> ·
+  <a href="https://tailwindcss.com">Tailwind CSS</a> ·
+  <a href="#deploy">Deploy estático</a>
+</p>
 
-🧱 Stack
+---
 
-Astro (Island architecture, sin JS innecesario)
+## Tabla de contenidos
+- [Características](#características)
+- [Stack](#stack)
+- [Requisitos](#requisitos)
+- [Desarrollo local](#desarrollo-local)
+- [Build de producción](#build-de-producción)
+- [Estructura del proyecto](#estructura-del-proyecto)
+- [Deploy](#deploy)
+  - [cPanel / hosting compartido](#cpanel--hosting-compartido)
+  - [Vercel / Netlify](#vercel--netlify)
+- [SEO & Performance (checklist)](#seo--performance-checklist)
+- [Contribuir / mantenimiento](#contribuir--mantenimiento)
+- [Licencia](#licencia)
 
-Tailwind CSS (utilidades de diseño y theme)
+---
 
-Iconos SVG puros (sin dependencias)
+## Características
+- ⚡ **Estático puro** (sin servidor Node en producción).
+- 🧱 **Islands**: Astro solo hidrata cuando es necesario (sin JS extra).
+- 🎨 **Tailwind** para utilidades y theme.
+- 🖼️ **Imágenes optimizadas** (WebP/JPG; SVGs puros para íconos).
+- 🔒 Configurable para HTTPS y cache vía `.htaccess` (hosting Apache).
 
-Imágenes estáticas (sirve todo desde public/)
+---
 
+## Stack
+- **Astro** (output estático)
+- **Tailwind CSS**
+- **SVG Icons** (sin dependencias)
+- **Imágenes estáticas** servidas desde `public/`
 
+---
 
-▶️ Desarrollo local
+## Requisitos
+- **Node 18+** y **npm**
 
-Requisitos: Node 18+ y npm
+---
 
-# instalar deps
-npm i
+## Desarrollo local
+```bash
+# Instalar dependencias
+npm install
 
-# entorno de desarrollo
+# Entorno de desarrollo
 npm run dev
 
-# build de producción
-npm run build
-
-# previsualizar el build
+# Previsualizar el build
 npm run preview
 
+---
+
+## Build de Producción
+npm run build
+
+---
 
 
-🗂️ Estructura del proyecto
+## Estructura
+
+```text
 .
 ├── public/
 │   ├── img/
-│   │   ├── galeria/            # imágenes de la galería
-│   │   └── clientes/           # logos de clientes (PNG/SVG)
-│   ├── favicon.svg             # ícono principal
-│   └── og-cover.jpg            # imagen OG para redes
+│   │   ├── galeria/          # imágenes de la galería
+│   │   └── clientes/         # logos de clientes (PNG/SVG)
+│   ├── favicon.svg           # ícono principal
+│   └── og-cover.jpg          # imagen OG para redes
 ├── src/
-│   ├── components/
-│   │   ├── Header.astro
-│   │   ├── Hero.astro
-│   │   ├── Servicios.astro
-│   │   ├── Clientes.astro
-│   │   ├── Galeria.astro
-│   │   └── WhatsAppFloat.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   ├── pages/
-│   │   └── index.astro
-│   └── styles/
-│       └── globals.css
+│   ├── components/           # Header, Hero, Servicios, Clientes, Galeria, WhatsAppFloat
+│   ├── layouts/              # Layout.astro
+│   ├── pages/                # index.astro
+│   └── styles/               # globals.css
 ├── astro.config.mjs
 ├── tailwind.config.mjs
 ├── package.json
 └── README.md
 
 
-🚀 Deploy
+## Deploy 
 
-Funciona out-of-the-box en Vercel, Netlify o cualquier hosting estático.
+- npm run build → genera dist/
 
-Build: npm run build
+- Comprimir el contenido de dist/ en dist.zip
 
-Output: carpeta dist/
+- Subir a cPanel en public_html/, extraer y asegurar permisos (carpetas 755, archivos 644)
 
-Adaptador: estático por defecto (no se necesita servidor Node).
+- Opcional: .htaccess para forzar HTTPS y cache estática
+  En Vercel/Netlify funciona directo con:
 
+- Build Command: npm run build
 
-
-🧩 Contribuir / mantenimiento
-
-Crea rama: feat/xxx o fix/xxx.
-
-npm run dev y prueba en desktop + móvil.
-
-Asegúrate de no romper el encuadre del Hero ni el comportamiento de los CTAs.
-
-Sube imágenes optimizadas (WebP/JPG progresivo, PNG transparente si necesitas fondo).
-
-
+- Output Directory: dist
