@@ -9,12 +9,17 @@
 /* Utilidades propias */
 .section-header { @apply max-w-3xl mx-auto text-center sm:text-left; }
 
-.section { @apply py-12 sm:py-16; }
+/* .section { @apply py-12 sm:py-16; } */
+.section { @apply py-12 sm:py-16 lg:py-24; }
 .section-title { @apply text-2xl sm:text-3xl font-bold tracking-tight; }
 .section-sub { @apply mt-2 text-gray-600; }
 
 .btn-primary { @apply inline-flex items-center justify-center rounded-xl bg-brand px-6 py-3 font-semibold text-white hover:bg-brandDark transition; }
 .btn-ghost { @apply inline-flex items-center justify-center rounded-xl border border-white/30 bg-white/10 px-6 py-3 font-semibold text-white hover:bg-white/20; }
 .btn-outline { @apply inline-flex items-center justify-center rounded-xl border border-gray-300 px-6 py-3 font-semibold text-gray-900 hover:bg-gray-50; }
+
+.icon-pill { @apply mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full ring-1; }
+
+.logo-tile { @apply h-10 sm:h-12 w-auto object-contain opacity-70 saturate-0 transition hover:opacity-100 hover:saturate-100; }
 
 html { scroll-behavior: smooth; scroll-padding-top: 80px; } /* compensa el header sticky */

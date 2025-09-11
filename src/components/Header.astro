@@ -1,38 +1,77 @@
 ---
 const links = [
-  { href: '#servicios', label: 'Servicios' },
-  { href: '#galeria', label: 'Galería' },
-  { href: '#testimonios', label: 'Testimonios' },
-  { href: '#contacto', label: 'Contacto' }
+  { href: "#servicios", label: "Servicios" },
+  { href: "#galeria", label: "Galería" },
+  { href: "#clientes", label: "Clientes" },
+  { href: "#contacto", label: "Contacto" },
 ];
-
-
 ---
+
 <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b">
   <div class="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
-    <!-- <a href="#" class="flex items-center gap-3 font-bold text-gray-900">
-      <img src="/logo.png" alt="B&B Perforaciones" class="h-9 w-auto" />
-    </a> -->
-
     <a href="/" class="flex items-center gap-3">
-      <img src="/logo.png" alt="B&B Perforaciones" width="150" height="56" class="logo" />
+      <img
+        src="/logo.png"
+        alt="B&B Perforaciones"
+        width="150"
+        height="56"
+        class="logo"
+      />
     </a>
 
     <!-- Desktop -->
     <nav class="hidden sm:flex items-center gap-6">
-      {links.map(l => <a href={l.href} class="text-sm font-medium text-gray-700 hover:text-brand">{l.label}</a>)}
+      {
+        links.map((l) => (
+          <a
+            href={l.href}
+            class="text-sm font-medium text-gray-700 hover:text-brand"
+          >
+            {l.label}
+          </a>
+        ))
+      }
     </nav>
-    <a href="https://wa.me/593981894763" class="hidden sm:inline-flex btn-primary" aria-label="Escribir por WhatsApp">WhatsApp</a>
+    <a
+      href="https://wa.me/593988429450"
+      class="hidden md:inline-flex items-center rounded-lg bg-[#25864b] px-5 py-2.5 text-white font-medium shadow-sm hover:opacity-90"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      WhatsApp
+    </a>
 
     <!-- Móvil: details/summary (sin JS) -->
     <details class="sm:hidden">
-      <summary class="list-none cursor-pointer p-2 -mr-2 rounded-lg hover:bg-gray-100" aria-label="Abrir menú">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+      <summary
+        class="list-none cursor-pointer p-2 -mr-2 rounded-lg hover:bg-gray-100"
+        aria-label="Abrir menú"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          ><path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"></path></svg
+        >
       </summary>
       <div class="absolute left-0 right-0 mt-3 bg-white border-t shadow-card">
         <nav class="px-4 py-3 grid gap-3">
-          {links.map(l => <a href={l.href} class="py-2 text-sm font-medium text-gray-800">{l.label}</a>)}
-          <a href="https://wa.me/593981894763" class="btn-primary text-center">WhatsApp</a>
+          {
+            links.map((l) => (
+              <a href={l.href} class="py-2 text-sm font-medium text-gray-800">
+                {l.label}
+              </a>
+            ))
+          }
+          <a href="https://wa.me/593988429450" class="btn-primary text-center"
+            >WhatsApp</a
+          >
         </nav>
       </div>
     </details>
