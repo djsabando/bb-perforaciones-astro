@@ -1,32 +1,140 @@
-<section class="relative isolate lg:min-h-[68vh]">  <!-- sin bg sólido -->
-  <!-- Imagen de fondo -->
-  <picture>
-    <source srcset="/img/hero-desktop-1920x1080.webp" type="image/webp" />
-    <img
-      src="/img/hero-desktop-1920x1080.webp"
-      alt="Equipo perforando pozo de agua"
-      class="absolute inset-0 h-full w-full object-cover object-center"  
-      loading="eager"
-      fetchpriority="high"
-      sizes="(min-width:1024px) 100vw, 100vw"
-    />
-  </picture>
+---
+const images = [
+  { src: '/img/hero/hero1.png', alt: '' },
+  { src: '/img/hero/hero2.png', alt: '' },
+  { src: '/img/hero/hero3.png', alt: '' },
+];
+const autoMs = 4000; // 4s
+---
 
-  <!-- Overlay para legibilidad -->
-  <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/30"></div> <!-- z por defecto (0) -->
+<section class="relative isolate overflow-hidden bg-gray-900" data-auto={autoMs}>
+  <!-- Slides -->
+  <div class="absolute inset-0 z-0">
+    {images.map((img, i) => (
+      <img
+        src={img.src}
+        alt={img.alt}
+        loading={i === 0 ? 'eager' : 'lazy'}
+        decoding="async"
+        class={`hero-frame absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700 ease-in-out ${i === 0 ? 'is-active' : ''}`}
+      />
+    ))}
+    <div class="absolute inset-0 z-10 bg-black/45"></div>
+  </div>
 
-  <!-- Contenido por encima -->
-  <div class="relative z-20 mx-auto max-w-4xl px-6 py-20 sm:py-24 lg:py-24 text-center">
-    <h1 class="text-3xl sm:text-5xl font-bold text-white">
-      Perforamos pozos en todo Ecuador <span class="font-normal">desde 1993</span>
+  <!-- Contenido -->
+  <div class="relative z-20 mx-auto max-w-6xl px-6 py-24 md:py-36 lg:py-40">
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white">
+      Perforación de pozos en Ecuador<br /><span class="text-white/90">desde 1993</span>
     </h1>
-    <p class="mt-4 text-gray-200">Estudios, perforación, mantenimiento y equipamiento con equipos especializados.</p>
-    <div class="mt-6 flex justify-center gap-3">
-      <a href="#contacto" class="btn-primary">Cotiza tu pozo</a>
-      <a href="https://wa.me/593988429450" class="btn-ghost">WhatsApp</a>
+    <p class="mt-6 text-lg text-white/90 max-w-3xl">
+      Estudios, perforación, mantenimiento y equipamiento con equipos especializados.
+    </p>
+    <div class="mt-8 flex gap-4">
+      <a href="#contacto" class="rounded-lg bg-brand text-white px-6 py-3 font-semibold shadow hover:bg-brandDark">Cotiza tu pozo</a>
+      <a href="https://wa.me/593988429450" class="rounded-lg bg-white/10 text-white px-6 py-3 font-semibold ring-1 ring-white/30 hover:bg-white/20">WhatsApp</a>
     </div>
+  </div>
+
+  <!-- Flechas (solo desktop) -->
+  <button
+    type="button"
+    class="hero-prev hidden md:grid absolute left-4 top-1/2 -translate-y-1/2 h-10 w-10 place-items-center rounded-full bg-white/80 hover:bg-white shadow ring-1 ring-black/5 z-30"
+    aria-label="Anterior"
+  >
+    <svg viewBox="0 0 24 24" class="h-5 w-5"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+
+  <button
+    type="button"
+    class="hero-next hidden md:grid absolute right-4 top-1/2 -translate-y-1/2 h-10 w-10 place-items-center rounded-full bg-white/80 hover:bg-white shadow ring-1 ring-black/5 z-30"
+    aria-label="Siguiente"
+  >
+    <svg viewBox="0 0 24 24" class="h-5 w-5"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+
+  <!-- Puntos -->
+  <div class="hero-dots absolute bottom-5 left-1/2 -translate-x-1/2 z-30 flex gap-2">
+    {images.map((_, i) => (
+      <button
+        type="button"
+        class={`hero-dot h-2.5 w-2.5 rounded-full bg-white/40 hover:bg-white ${i === 0 ? 'is-active' : ''}`}
+        aria-label={`Ir al slide ${i + 1}`}
+        data-index={i}
+      />
+    ))}
   </div>
 </section>
 
+<style>
+  .hero-frame.is-active { opacity: 1; }
+  .hero-dot.is-active { background-color: #fff; width: 12px; border-radius: 9999px; }
+</style>
+
+<script>
+(() => {
+  const root = /** @type {HTMLElement|null} */ (document.currentScript?.closest('section'));
+  if (!root) return;
+
+  /** @type {HTMLElement[]} */
+  const frames = Array.from(root.querySelectorAll('.hero-frame'));
+  /** @type {HTMLButtonElement[]} */
+  const dots   = Array.from(root.querySelectorAll('.hero-dot'));
+  /** @type {HTMLButtonElement|null} */
+  const prev   = root.querySelector('.hero-prev');
+  /** @type {HTMLButtonElement|null} */
+  const next   = root.querySelector('.hero-next');
+
+  if (frames.length === 0) return;
+
+  const autoMs = Number(root.dataset.auto) || 6000;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  let i = 0;
+  let autoplay = !reduced;
+  let timer: number | null = null;
 
 
+  
+  const show = (n) => {
+    frames[i]?.classList.remove('is-active');
+    dots[i]?.classList?.remove('is-active');
+    i = (n + frames.length) % frames.length;
+    frames[i]?.classList.add('is-active');
+    dots[i]?.classList?.add('is-active');
+  };
+
+  const start = () => {
+    if (!autoplay || timer !== null) return;
+    timer = window.setInterval(() => show(i + 1), autoMs);
+  };
+
+  const stop = () => {
+    if (timer !== null) {
+      window.clearInterval(timer);
+      timer = null;
+    }
+  };
+
+  // Controles
+  prev?.addEventListener('click', () => { autoplay = false; stop(); show(i - 1); });
+  next?.addEventListener('click', () => { autoplay = false; stop(); show(i + 1); });
+  dots.forEach((btn, idx) => btn.addEventListener('click', () => { autoplay = false; stop(); show(idx); }));
+
+  // (Quitado) Pausa por hover: NO mouseenter/mouseleave
+  // Mantenemos accesibilidad por teclado/foco:
+  root.tabIndex = 0;
+  root.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft')  { autoplay = false; stop(); show(i - 1); }
+    if (e.key === 'ArrowRight') { autoplay = false; stop(); show(i + 1); }
+  });
+  root.addEventListener('focusin',  stop);
+  root.addEventListener('focusout', () => {
+    if (!root.contains(document.activeElement)) start();
+  });
+
+  // Inicializa
+  show(0);
+  start();
+})();
+</script>
