@@ -1,40 +1,66 @@
 ---
-const clientes = [
-    { name: "Cliente 1", logo: "/img/clientes/cliente1.png" },
-    { name: "Cliente 2", logo: "/img/clientes/cliente2.png" },
-    { name: "Cliente 3", logo: "/img/clientes/cliente3.png" },
-    { name: "Cliente 4", logo: "/img/clientes/cliente4.png" },
-    { name: "Cliente 5", logo: "/img/clientes/cliente5.png" },
-    { name: "Cliente 6", logo: "/img/clientes/cliente6.png" },
+const logos = [
+  { src: "/img/clientes/odebrecht.png", alt: "ODEBRECHT" },
+  { src: "/img/clientes/agripac.png", alt: "AGRIPAC" },
+  { src: "/img/clientes/vepamil.png", alt: "VEPAMIL" },
+  { src: "/img/clientes/calademar.png", alt: "CALADEMAR" },
+  { src: "/img/clientes/semvra.png", alt: "SEMVRA" },
+  { src: "/img/clientes/refristore.png", alt: "REFRISTORE" },
 ];
 ---
 
-<section id="clientes" class="section scroll-mt-24">
-  <div class="mx-auto max-w-6xl px-6">
-    
-    <h2 class="section-title">Clientes</h2>
-    <p class="section-sub">Algunas empresas que confían en nosotros.</p>
-    
-    <!-- 2 filas x 3 columnas -->
-    <ul
-      role="list"
-      class="mt-8 grid grid-cols-2 md:grid-cols-3 gap-x-12 gap-y-10 md:gap-x-16 md:gap-y-12"
-    >
-      {clientes.map((c) => (
-        <li class="flex items-center justify-center">
-          <!-- LOGO al doble de tamaño -->
+<section id="clientes" class="bg-slate-50 border-y border-slate-200">
+  <div class="mx-auto max-w-6xl px-4 py-14 md:px-6">
+
+    <!-- Título -->
+    <p class="text-center text-xs font-extrabold uppercase tracking-widest text-slate-500">
+      Empresas que confían en nosotros
+    </p>
+
+    <div class="relative mt-10 overflow-hidden">
+
+      <!-- Fade izquierdo -->
+      <div class="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-slate-50 to-transparent"></div>
+
+      <!-- Fade derecho -->
+      <div class="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-slate-50 to-transparent"></div>
+
+      <!-- Track -->
+      <div class="marquee flex w-max items-center gap-24 pr-24 whitespace-nowrap">
+
+        {logos.concat(logos).map((l) => (
           <img
-            src={c.logo}
-            alt={c.name}
+            src={l.src}
+            alt={l.alt}
+            class="h-14 md:h-16 w-auto opacity-80 hover:opacity-100 transition-all duration-300"
             loading="lazy"
             decoding="async"
-            class="h-16 md:h-24 w-auto object-contain
-                    opacity-100 filter-none
-                    max-w-[160px] md:max-w-[220px]"
-            />
-        </li>
-      ))}
-    </ul>
+          />
+        ))}
+
+      </div>
+    </div>
   </div>
 </section>
 
+<style>
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .marquee {
+    animation: marquee 28s linear infinite;
+  }
+
+  .marquee:hover {
+    animation-play-state: paused;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee {
+      animation: none;
+      transform: none;
+    }
+  }
+</style>

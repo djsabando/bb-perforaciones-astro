@@ -1,0 +1,66 @@
+---
+const faqs = [
+  {
+    q: "¿Cuánto tiempo toma perforar un pozo de agua?",
+    a: "Depende de la profundidad y del tipo de terreno (rocoso, arenoso, etc.). Como referencia, una perforación estándar puede tomar entre 10 y 15 días laborables.",
+  },
+  {
+    q: "¿De qué depende el costo de un pozo?",
+    a: "Principalmente de la profundidad, el diámetro, el tipo de suelo, la accesibilidad del sitio y si incluye equipamiento (bomba, tablero, tubería) y/o trámites.",
+  },
+  {
+    q: "¿Qué profundidad suele tener un pozo?",
+    a: "Varía según la zona y el acuífero. La profundidad se define con base en el estudio técnico (por ejemplo, sondeos) y la experiencia en campo.",
+  },
+  
+  {
+    q: "¿Realizan mantenimiento y rehabilitación de pozos existentes?",
+    a: "Sí. Hacemos limpieza, rehabilitación de caudal y diagnóstico para recuperar eficiencia (según evaluación técnica del pozo).",
+  },
+  {
+    q: "¿En qué zonas trabajan?",
+    a: "Trabajamos a nivel nacional. Para confirmar disponibilidad y tiempos, indícanos tu ciudad/provincia y ubicación aproximada.",
+  },
+];
+---
+
+<section id="faq" class="bg-white">
+  <div class="mx-auto max-w-4xl px-4 py-16 md:px-6 md:py-24">
+    <div class="text-center">
+      <h2 class="text-3xl font-extrabold tracking-tight text-slate-900 md:text-5xl">
+        Preguntas frecuentes
+      </h2>
+      <p class="mt-4 text-base text-slate-600 md:text-lg">
+        Resolvemos dudas comunes antes de iniciar un proyecto.
+      </p>
+    </div>
+
+    <div class="mt-10 space-y-4">
+      {faqs.map((item) => (
+        <details class="group rounded-xl border border-slate-200 bg-white p-5 shadow-sm open:shadow-md md:p-6">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4">
+            <span class="text-sm font-bold text-slate-900 md:text-base">{item.q}</span>
+
+            <span class="grid h-9 w-9 place-items-center rounded-lg bg-slate-50 border border-slate-200">
+              <svg
+                class="h-5 w-5 text-slate-700 transition-transform duration-200 group-open:rotate-180"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </span>
+          </summary>
+
+          <p class="mt-4 text-sm leading-relaxed text-slate-600 md:text-base">
+            {item.a}
+          </p>
+        </details>
+      ))}
+    </div>
+
+  </div>
+</section>

@@ -1,79 +1,84 @@
 ---
 const links = [
   { href: "#servicios", label: "Servicios" },
-  { href: "#galeria", label: "Galería" },
-  { href: "#clientes", label: "Clientes" },
-  { href: "#contacto", label: "Contacto" },
+  { href: "#nosotros", label: "Nosotros" },
+  { href: "#proceso", label: "Proceso" },
+  { href: "#galeria", label: "Proyectos" },
+  { href: "#cta", label: "Contacto" }, // 👈 importante
 ];
 ---
 
-<header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b">
-  <div class="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
-    <a href="/" class="flex items-center gap-3">
-      <img
-        src="/logo.png"
-        alt="B&B Perforaciones"
-        width="150"
-        height="56"
-        class="logo"
-      />
-    </a>
+<header class="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur">
+  <div class="mx-auto max-w-6xl px-4">
+    <div class="flex h-20 items-center justify-between">
 
-    <!-- Desktop -->
-    <nav class="hidden sm:flex items-center gap-6">
-      {
-        links.map((l) => (
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-3">
+        <img
+          src="/logo.png"
+          alt="B&B Perforaciones"
+          class="h-10 w-auto"
+          loading="eager"
+          decoding="async"
+        />
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden sm:flex items-center gap-8">
+        {links.map((l) => (
           <a
             href={l.href}
-            class="text-sm font-medium text-gray-700 hover:text-brand"
+            class="text-sm font-semibold text-slate-700 hover:text-[#25864b] transition-colors"
           >
             {l.label}
           </a>
-        ))
-      }
-    </nav>
-    <a
-      href="https://wa.me/593988429450"
-      class="hidden md:inline-flex items-center rounded-lg bg-[#25864b] px-5 py-2.5 text-white font-medium shadow-sm hover:opacity-90"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      WhatsApp
-    </a>
+        ))}
+      </nav>
 
-    <!-- Móvil: details/summary (sin JS) -->
-    <details class="sm:hidden">
-      <summary
-        class="list-none cursor-pointer p-2 -mr-2 rounded-lg hover:bg-gray-100"
-        aria-label="Abrir menú"
+      <!-- WhatsApp Button -->
+      <a
+        href="https://wa.me/593988429450"
+        class="hidden md:inline-flex items-center rounded-xl bg-[#25864b] px-6 py-3 text-white font-semibold shadow-sm hover:opacity-90 transition"
+        target="_blank"
+        rel="noopener noreferrer"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-6 w-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          ><path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4 6h16M4 12h16M4 18h16"></path></svg
+        WhatsApp
+      </a>
+
+      <!-- Mobile -->
+      <details class="sm:hidden relative">
+        <summary
+          class="list-none cursor-pointer rounded-lg p-2 -mr-2 hover:bg-slate-100"
+          aria-label="Abrir menú"
         >
-      </summary>
-      <div class="absolute left-0 right-0 mt-3 bg-white border-t shadow-card">
-        <nav class="px-4 py-3 grid gap-3">
-          {
-            links.map((l) => (
-              <a href={l.href} class="py-2 text-sm font-medium text-gray-800">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </summary>
+
+        <div class="absolute right-0 mt-3 w-64 rounded-xl bg-white border border-slate-200 shadow-lg">
+          <nav class="p-3 grid gap-1">
+            {links.map((l) => (
+              <a
+                href={l.href}
+                class="rounded-lg px-3 py-2 text-sm font-semibold text-slate-800 hover:bg-slate-50"
+              >
                 {l.label}
               </a>
-            ))
-          }
-          <a href="https://wa.me/593988429450" class="btn-primary text-center"
-            >WhatsApp</a
-          >
-        </nav>
-      </div>
-    </details>
+            ))}
+
+            <a
+              href="https://wa.me/593988429450"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mt-2 rounded-lg bg-[#25864b] px-3 py-2 text-center text-sm font-semibold text-white hover:opacity-90"
+            >
+              WhatsApp
+            </a>
+          </nav>
+        </div>
+      </details>
+
+    </div>
   </div>
 </header>
